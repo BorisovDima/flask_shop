@@ -1,0 +1,22 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% macro make_form(form) %}
+
+<form method="POST" action="">
+
+                {% for f in form %}
+                    {% if f.type == 'CSRFTokenField' %}
+                        {{ f() }}
+                    {% else %}
+                        {{ wtf.form_field(f) }}
+                        {% for er in  f.errors %}
+                             <div class="alert py-0">
+                                <a class="text-danger">{{ er }} </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+</form>
+
+
+{% endmacro %}

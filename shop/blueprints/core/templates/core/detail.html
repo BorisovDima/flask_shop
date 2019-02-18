@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+   <div class="container-fluid">
+      <div class="row">
+            <div class="col-lg-7">
+                <div class="row">
+                    <div class="col-12">
+
+
+                <img class="img-fluid" src="{{ object.image }}" style="max-height: 500px">
+            </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3><strong>{{ object.name }}</strong></h3>
+                         {% set variant, size = object.get_main_variant(), object.get_size() %}
+                        {% if object.get_count() < 0 %}
+                            count
+                        {% endif %}
+                         <p class="font-weight-bold" data-id="variant-price">{{ variant.price }}{{ config.DEFAULT_CURRENCY_LABEL }}</p>
+                   {% if size %}
+                <div class="col-3 px-0 pb-2">
+                    <label>Size</label>
+                  <select id="size-change-product" class="custom-select">
+                      {% for variant in size %}
+                 <option value="{{ variant.id }}" data-price="{{ variant.price }}">{{ variant.size }}</option>
+                      {% endfor %}
+                  </select>
+                    </div>
+                  {% endif %}
+                        <button type="button" class="btn btn-secondary btn-block mb-3"  data-id="{{ variant.id }}" data-action="order-product" >
+                    <span class="font-weight-bold" style="font-size: 20px">
+                        <i class="material-icons"> add_shopping_cart </i>
+                        Add to Cart
+                        </span>
+                         </button>
+
+
+                                        {% if object.description %}
+                <h5 class="font-weight-bold">DESCRIPTION:</h5>
+                <p>{{ object.description }}</p>
+                {% endif %}
+
+                {% if object.features %}
+                <h5 class="font-weight-bold">FEATURES:</h5>
+                <p>{{ object.features }}</p>
+                {% endif %}
+
+
+                </div>
+                </div>
+            </div>
+
+            </div>
+
+      </div>
+{% endblock %}
+
+
+
+
+{% block scripts %}
+    {{ super() }}
+<script src="{{ url_for('static', filename='js/post_ajax.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/cart/check_cart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cart/delete-from-cart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cart/put-in-cart-product.js') }}"></script>
+{% endblock %}

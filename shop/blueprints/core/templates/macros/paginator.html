@@ -1,0 +1,31 @@
+{% macro paginator(objects) %}
+<ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" {% if objects.has_prev %} data-action="paginate" data-href="{{ url_for('core.mainpage') }}?page={{ objects.prev_num }}" {% endif %} aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {%- for page in objects.iter_pages(right_current=10, left_current=10 ) %}
+            {% if page %}
+                 {% if page != objects.page %}
+                    <li class="page-item">
+                        <a class="page-link" data-action="paginate" data-href="{{ url_for('core.mainpage') }}?page={{ page }}">{{ page }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link">{{ page }}<span class="sr-only">(current)</span></a>
+                    </li>
+                {% endif %}
+           {% else %}
+                <li class="page-item disabled">
+                     <a class="page-link">…</a>
+                </li>
+           {% endif %}
+        {%- endfor %}
+        <li class="page-item">
+            <a class="page-link" {% if objects.has_next%} data-action="paginate" data-href="{{ url_for('core.mainpage') }}?page={{ objects.next_num }}" {% endif %} aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+</ul>
+{% endmacro %}

@@ -1,0 +1,57 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-0 pb-1 sticky-top">
+  <a class="navbar-brand" href="{{ url_for('core.mainpage') }}">Logo</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+
+    <ul class="navbar-nav mr-auto">
+        {% if filter %}
+      <li class="nav-item pt-3">
+        {{ wtf.form_field(filter.category) }}
+      </li>
+        <li class="nav-item ml-5 pt-3">
+             {{ wtf.form_field(filter.brand) }}
+        </li>
+        {% endif %}
+    </ul>
+
+    <span class="navbar-text">
+
+      <ul class="navbar-nav mr-auto">
+
+
+      <li class="nav-item">
+
+       </li>
+
+          {% if filter %}
+        <li class="nav-item pt-4">
+     <i class="material-icons">search</i>
+
+        </li>
+          <li class="nav-item mx-4 pt-3">
+              <input id="{{ filter.name.id }}" name="{{ filter.name.name }}" placeholder="Search" class="form-control">
+          </li>
+            {% endif %}
+        <li class="nav-item pt-3">
+      <a id="my-cart" class="btn">
+        <i class="material-icons">shopping_cart</i>
+        <span id="cart-counter">{{ cart_count() }} </span></a>
+        </li>
+      </ul>
+    </span>
+
+  </div>
+</nav>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="my-cart-modal">
+</div>

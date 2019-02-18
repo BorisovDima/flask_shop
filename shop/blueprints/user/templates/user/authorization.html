@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% import 'macros/form_bootstrap4.html' as make_form %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block app_content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-7 mt-0">
+
+{{ make_form.make_form(form) }}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

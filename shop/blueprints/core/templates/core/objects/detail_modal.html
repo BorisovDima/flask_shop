@@ -1,0 +1,64 @@
+
+
+
+
+
+ <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title">
+              <a href="{{ object.get_absolute_url() }}" class="text-dark"><strong>{{ object.name }}</strong></a>
+          </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="img-fluid" src="{{ object.image }}" style="max-height: 400px">
+            </div>
+            <div class="col-lg-6">
+                {% set variant, size = object.get_main_variant(), object.get_size() %}
+                <h3><strong>{{ object.name }}</strong></h3>
+                <p class="font-weight-bold"><span data-id="variant-price">{{ variant.price }}{{ config.DEFAULT_CURRENCY_LABEL }}</span></p>
+
+                {% if object.get_count() < 0 %}
+                            count
+                        {% endif %}
+
+                  {% if size %}
+                <div class="col-3 px-0 pb-2">
+                    <label>Size</label>
+                  <select id="size-change-product" class="custom-select">
+                      {% for variant in size %}
+                 <option value="{{ variant.id }}" data-price="{{ variant.price }}">{{ variant.size }}</option>
+                      {% endfor %}
+                        </select>
+                    </div>
+                  {% endif %}
+                <button type="button" class="btn btn-secondary btn-block mb-3"  data-id="{{ variant.id }}" data-action="order-product" >
+                    <span class="font-weight-bold" style="font-size: 20px">
+                        <i class="material-icons"> add_shopping_cart </i>
+                        Add to Cart
+                    </span>
+                </button>
+
+                {% if object.description %}
+                <h5 class="font-weight-bold">DESCRIPTION:</h5>
+                <p>{{ object.description }}</p>
+                {% endif %}
+
+                {% if object.features %}
+                <h5 class="font-weight-bold">FEATURES:</h5>
+                <p>{{ object.features }}</p>
+                {% endif %}
+            </div>
+        </div>
+          </div>
+      <div class="modal-footer">
+      </div>
+
+    </div>
+  </div>

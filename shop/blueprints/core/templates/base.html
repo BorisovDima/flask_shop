@@ -1,0 +1,34 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+This is an example page
+{% endblock %}
+
+
+
+
+{% block navbar %}
+{% include 'core/objects/navbar.html' %}
+{% endblock %}
+
+
+
+
+
+
+{% block content %}
+
+{% block app_content %}
+{% endblock %}
+
+{% endblock %}
+
+
+{% block styles %}
+{{ super() }}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+{% endblock %}
+
+
+

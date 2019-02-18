@@ -1,0 +1,18 @@
+{% macro form(order, key) %}
+
+<form action="{{ url_for('payment.pay-stripe') }}" method="post">
+    <article>
+      <label>
+        <span>Amount is ${{ order.total_price }}</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="{{ key }}"
+            data-description="A Flask Charge"
+            data-amount="{{ order.total_price * 100}}"
+            data-locale="auto"></script>
+  </form>
+
+
+{% endmacro %}

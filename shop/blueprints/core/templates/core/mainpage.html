@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+
+
+
+{% block app_content %}
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="base-shop-modal">
+</div>
+
+
+
+
+<form method="GET" action="" id="filter-form">
+  <div class="form-group pl-3">
+        <div class="form-row">
+
+    <div class="col-2">
+        {{ wtf.form_field(filter.ordering) }}
+    </div>
+    <div class="col-2">
+        {{ wtf.form_field(filter.average_price) }}
+    </div>
+         <div class="col-2 pt-3 mt-3">
+         <a  class="btn btn-outline-primary" id="filter-form-submit">Filter</a>
+    </div>
+
+
+        </div>
+    </div>
+</form>
+
+
+
+<div id="list-products">
+{% include "core/objects/products.html" %}
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    {{ super() }}
+<script src="{{ url_for('static', filename='js/post_ajax.js') }}"></script>
+<script src="{{ url_for('static', filename='js/detail-product.js') }}"></script>
+<script src="{{ url_for('static', filename='js/load-products.js') }}"></script>
+
+
+<script src="{{ url_for('static', filename='js/cart/check_cart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cart/delete-from-cart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cart/put-in-cart-product.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+
+<div class="row" data-actions="detail-product" >
+
+    {% for obj in objects.items %}
+    <div class="card-column col-6 col-sm-6 col-md-4 col-lg-3 w-20 my-3 d-flex align-items-stretch justify-content-around">
+            <a class="hover card border-0 shadow-none card-product text-left" data-action="detail-product" data-id="{{ obj.id }}">
+        <div class="card-img text-center d-flex align-items-center justify-content-center">
+             <img class="img-fluid" src="{{ obj.image }}" style="max-height: 290px">
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <h6 class="font-weight-bold" >{{ obj.brand.name }}</h6>
+                    <h6 class="font-weight-bold" >{{ obj.name }}</h6>
+                    <h6>{{ obj.average_price }}{{ config.DEFAULT_CURRENCY_LABEL }}</h6>
+                </div>
+            </div>
+        </div>
+            </a>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% import 'macros/paginator.html' as p %}
+
+{{ p.paginator(objects) }}
