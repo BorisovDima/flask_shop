@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_admin import Admin
 from flask_login import LoginManager
+from flask_collect import Collect
 import stripe
 
 
@@ -19,7 +20,7 @@ migrate = Migrate()
 bootstrap = Bootstrap()
 admin = Admin(name='flask_shop', index_view=IndexAdmin(),
               base_template='admin/base_admin.html', endpoint='admin')
-
+collect = Collect()
 
 def make_app(config=None):
     app = Flask(__name__)
@@ -31,7 +32,7 @@ def make_app(config=None):
     bootstrap.init_app(app)
     login.init_app(app)
     admin.init_app(app)
-
+    collect.init_app(app)
     with app.app_context():
         from blueprints.cart.routes import cart
         from blueprints.order.routes import order
@@ -50,7 +51,7 @@ def make_app(config=None):
     app.register_blueprint(url_prefix='/', blueprint=payment)
     app.register_blueprint(url_prefix='/api/cart/', blueprint=cart)
 
-
+    collect.collect(verbose=True)
     return app
 
 

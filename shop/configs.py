@@ -28,8 +28,8 @@ ORDER_SESSION_ID = '_order'
 
 FLASK_ADMIN_SWATCH = 'cerulean'
 
-MEDIA_URL = '/media/shop_media'
-MEDIA_PATH = '/home/borisov/flask_shop/app/media/shop_media'
+MEDIA_URL = '/media/'
+MEDIA_PATH = '/home/borisov/flask_shop/app/staticfiles/media/'
 
 
 ################ pay
@@ -39,3 +39,7 @@ DEFAULT_CURRENCY_LABEL =  '$'
 STRIPE_SERCRET_KEY =  os.environ['STRIPE_SECRET_KEY']
 STRIPE_PUBLISHABLE_KEY =  os.environ['STRIPE_PUBLISHABLE_KEY']
 
+
+############ static
+
+COLLECT_STATIC_ROOT = '/home/borisov/flask_shop/app/staticfiles/static'
